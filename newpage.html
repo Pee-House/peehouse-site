@@ -15,12 +15,35 @@
             color: #eee;
             padding: 20px;
         }
-        #stats-data {
-            background: #222;
-            padding: 15px;
-            border-radius: 8px;
+
+        .stats-card {
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 10px;
             margin-top: 10px;
-            white-space: pre-wrap;
+            border: 1px solid #333;
+            max-width: 700px;
+        }
+
+        .stats-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #DDD618;
+        }
+
+        .stat-line {
+            margin: 4px 0;
+            font-size: 1rem;
+        }
+
+        .stat-label {
+            font-weight: bold;
+            color: #f0e68c;
+        }
+
+        #stats-loading {
+            margin-top: 10px;
+            font-style: italic;
         }
     </style>
 </head>
@@ -28,10 +51,10 @@
 <body>
     <h1>Pee House Discord Community</h1>
 
-    <div id="server-stats" style="max-width: 700px; margin-bottom: 1rem;">
+    <div id="server-stats">
         <h2>Live server statistics</h2>
         <div id="stats-loading">Loading server statistics…</div>
-        <pre id="stats-data" style="display: none;"></pre>
+        <div id="stats-container"></div>
     </div>
 
     <iframe src="https://discord.com/widget?id=1178054988266737784&theme=dark"
@@ -45,24 +68,47 @@
         const API_BASE_URL = 'https://raw.githubusercontent.com/Pee-House/peehouse-site/main/stats.json';
 
         async function loadServerStats() {
-            const statsLoading = document.getElementById('stats-loading');
-            const statsData = document.getElementById('stats-data');
+            const loading = document.getElementById('stats-loading');
+            const container = document.getElementById('stats-container');
 
             try {
                 const response = await fetch(API_BASE_URL, { cache: "no-store" });
-                if (!response.ok) {
-                    throw new Error("HTTP " + response.status);
-                }
+                if (!response.ok) throw new Error("HTTP " + response.status);
 
                 const data = await response.json();
 
-                statsLoading.style.display = 'none';
-                statsData.style.display = 'block';
+                loading.style.display = 'none';
 
-                statsData.textContent = JSON.stringify(data, null, 2);
+                // Your JSON is keyed by guild ID, so loop through them
+                for (const guildId in data) {
+                    const g = data[guildId];
+
+                    const card = document.createElement('div');
+                    card.className = 'stats-card';
+
+                    card.innerHTML = `
+                        <div class="stats-title">${g.guild_name} (${guildId})</div>
+
+                        <div class="stat-line"><span class="stat-label">Total members:</span> ${g.total_members}</div>
+                        <div class="stat-line"><span class="stat-label">Humans:</span> ${g.human_members}</div>
+                        <div class="stat-line"><span class="stat-label">Online:</span> ${g.online_members}</div>
+                        <div class="stat-line"><span class="stat-label">Verified:</span> ${g.verified_members}</div>
+                        <div class="stat-line"><span class="stat-label">Unverified:</span> ${g.unverified_members}</div>
+                        <div class="stat-line"><span class="stat-label">In voice now:</span> ${g.voice_members}</div>
+
+                        <br>
+
+                        <div class="stat-line"><span class="stat-label">Activity source:</span> ${g.activity.source}</div>
+                        <div class="stat-line"><span class="stat-label">Active last 24h:</span> ${g.activity.recent_24h ?? 'N/A'}</div>
+                        <div class="stat-line"><span class="stat-label">Active last 7d:</span> ${g.activity.recent_7d ?? 'N/A'}</div>
+                        <div class="stat-line"><span class="stat-label">Active last 30d:</span> ${g.activity.recent_30d ?? 'N/A'}</div>
+                    `;
+
+                    container.appendChild(card);
+                }
 
             } catch (error) {
-                statsLoading.textContent = 'Unable to load server statistics.\n' + error;
+                loading.textContent = 'Unable to load server statistics.\n' + error;
             }
         }
 
