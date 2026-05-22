@@ -10,8 +10,8 @@
     "bot_members": 14,
     "voice_members": 0,
     "presence": {
-      "online": 16,
-      "idle": 15,
+      "online": 18,
+      "idle": 13,
       "dnd": 9,
       "offline": 515
     },
@@ -21,7 +21,7 @@
       "recent_30d": 94,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-05-22T14:21:41.709325+00:00"
+    "last_updated": "2026-05-22T14:26:41.709855+00:00"
   },
   "1178207186942435348": {
     "guild_id": 1178207186942435348,
@@ -34,8 +34,8 @@
     "bot_members": 1,
     "voice_members": 0,
     "presence": {
-      "online": 0,
-      "idle": 2,
+      "online": 1,
+      "idle": 1,
       "dnd": 0,
       "offline": 10
     },
@@ -45,6 +45,6 @@
       "recent_30d": 11,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-05-22T14:21:41.710459+00:00"
+    "last_updated": "2026-05-22T14:26:41.710681+00:00"
   }
 }
