@@ -10,11 +10,54 @@
 </head>
 
 <body>
+    <h1>Pee House Discord Community</h1>
+    <div id="server-stats" style="font-family: Arial, sans-serif; max-width: 700px; margin-bottom: 1rem;">
+        <h2>Live server statistics</h2>
+        <div id="stats-loading">Loading server statistics…</div>
+        <pre id="stats-data" style="white-space: pre-wrap; display: none;"></pre>
+    </div>
+
     <iframe src="https://discord.com/widget?id=1178054988266737784&theme=dark"
             width="700" height="1000"
             allowtransparency="true"
             frameborder="10"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
     </iframe>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8081';
+        const GUILD_ID = '1178054988266737784';
+
+        async function loadServerStats() {
+            const statsLoading = document.getElementById('stats-loading');
+            const statsData = document.getElementById('stats-data');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/guilds/${GUILD_ID}/stats`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const data = await response.json();
+
+                statsLoading.style.display = 'none';
+                statsData.style.display = 'block';
+                statsData.textContent = `Server: ${data.guild_name} (${data.guild_id})\n` +
+                    `Total members: ${data.total_members}\n` +
+                    `Human members: ${data.human_members}\n` +
+                    `Online members: ${data.online_members}\n` +
+                    `Verified members: ${data.verified_members}\n` +
+                    `Unverified members: ${data.unverified_members}\n` +
+                    `Voice members now: ${data.voice_members}\n` +
+                    `Activity source: ${data.activity.source}\n` +
+                    `Active last 24h: ${data.activity.recent_24h ?? 'N/A'}\n` +
+                    `Active last 7d: ${data.activity.recent_7d ?? 'N/A'}\n` +
+                    `Active last 30d: ${data.activity.recent_30d ?? 'N/A'}\n`;
+            } catch (error) {
+                statsLoading.textContent = 'Unable to load server statistics.\n' + error;
+            }
+        }
+
+        loadServerStats();
+    </script>
 </body>
 </html>
