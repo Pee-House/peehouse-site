@@ -25,7 +25,7 @@
     </iframe>
 
     <script>
-        const API_BASE_URL = 'http://localhost:8081';
+        const API_BASE_URL = 'https://raw.githubusercontent.com/Pee-House/peehouse-site/main/stats.json';
         const GUILD_ID = '1178054988266737784';
 
         async function loadServerStats() {
@@ -33,25 +33,8 @@
             const statsData = document.getElementById('stats-data');
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/guilds/${GUILD_ID}/stats`);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
+                const response = await fetch(API_BASE_URL);
                 const data = await response.json();
-
-                statsLoading.style.display = 'none';
-                statsData.style.display = 'block';
-                statsData.textContent = `Server: ${data.guild_name} (${data.guild_id})\n` +
-                    `Total members: ${data.total_members}\n` +
-                    `Human members: ${data.human_members}\n` +
-                    `Online members: ${data.online_members}\n` +
-                    `Verified members: ${data.verified_members}\n` +
-                    `Unverified members: ${data.unverified_members}\n` +
-                    `Voice members now: ${data.voice_members}\n` +
-                    `Activity source: ${data.activity.source}\n` +
-                    `Active last 24h: ${data.activity.recent_24h ?? 'N/A'}\n` +
-                    `Active last 7d: ${data.activity.recent_7d ?? 'N/A'}\n` +
-                    `Active last 30d: ${data.activity.recent_30d ?? 'N/A'}\n`;
             } catch (error) {
                 statsLoading.textContent = 'Unable to load server statistics.\n' + error;
             }
