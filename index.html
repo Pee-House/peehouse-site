@@ -89,13 +89,16 @@
                 const card = document.createElement('div');
                 card.className = 'stats-card';
 
-                card.innerHTML = `
-                    <!-- <div class="stats-title">${g.guild_name}</div> -->
+                let vcLine = "";
+                if (g.voice_members > 0) {
+                    vcLine = `<div class="stat-line"><span class="stat-label">In VC:</span> ${g.voice_members}</div>`;
+                }
 
+                card.innerHTML = `
                     <div class="stat-line"><span class="stat-label">Total members:</span> ${g.human_members}</div>
                     <div class="stat-line"><span class="stat-label">Verified:</span> ${g.verified_members}</div>
                     <div class="stat-line"><span class="stat-label">Online:</span> ${g.online_members}</div>
-                    <div class="stat-line"><span class="stat-label">In VC:</span> ${g.voice_members}</div>
+                    ${vcLine}
 
                     <br>
 
