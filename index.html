@@ -9,28 +9,84 @@
     <meta name="theme-color" content="#DDD618">
 
     <style>
+        :root {
+            --page-bg: #111;
+            --page-text: #d0d70d;
+            --card-bg: #1c1c1c;
+            --card-border: #333;
+            --label: #f0e68c;
+            --muted: #ddd;
+            --button-bg: #DDD618;
+            --button-text: #111;
+            --modal-bg: #121212;
+            --modal-text: #fff;
+            --modal-overlay: rgba(0,0,0,0.6);
+        }
+
         body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             font-family: 'Comic Sans MS', ComicSans;
-            background: #111;
-            color: #d0d70d;
+            background: var(--page-bg);
+            color: var(--page-text);
             padding: 20px;
         }
 
+        .main-layout {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+            width: auto;
+            max-width: 700px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+
+        .stats-card-wrapper,
+        .widget-wrapper {
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .widget-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        .discord-widget {
+            width: 100%;
+            max-width: 320px;
+            min-width: 280px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+            display: block;
+        }
+
+        .stats-card-wrapper { display: flex; justify-content: center; }
+
         .stats-card {
-            background: #1c1c1c;
+            background: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
-            margin: 10px auto 0;
-            border: 1px solid #333;
-            max-width: 520px;
+            margin: 0;
+            border: 1px solid var(--card-border);
+            max-width: 300px;
             width: 100%;
             box-sizing: border-box;
+            text-align: right;
         }
 
         .stats-title {
             font-size: 1.4rem;
             margin-bottom: 10px;
-            color: #DDD618;
+            color: var(--page-text);
         }
 
         .stat-line {
@@ -40,7 +96,7 @@
 
         .stat-label {
             font-weight: bold;
-            color: #f0e68c;
+            color: var(--label);
         }
 
         #stats-loading {
@@ -53,8 +109,8 @@
             margin-bottom: 16px;
             padding: 12px 20px;
             border-radius: 999px;
-            background: #DDD618;
-            color: #111;
+            background: var(--button-bg);
+            color: var(--button-text);
             font-weight: bold;
             text-decoration: none;
             transition: background 0.2s ease;
@@ -63,29 +119,153 @@
         .join-button:hover {
             background: #ffeb3b;
         }
+        .center-join { text-align: center; margin-top: 16px; }
+
+        /* Age modal styles */
+        #age-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
+        .age-modal-overlay { position: absolute; inset: 0; background: var(--modal-overlay); }
+        .age-modal-box { position: relative; width: 320px; max-width: calc(100% - 40px); margin: 12vh auto; background: var(--modal-bg); color: var(--modal-text); border-radius: 8px; padding: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); border: 1px solid var(--card-border); text-align: center; }
+        .age-modal-title { font-weight:700; color: var(--button-bg); margin-bottom: 8px; }
+        .age-modal-desc { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; }
+        .age-modal-actions { display:flex; gap:8px; justify-content:center; }
+        .age-btn { padding: 8px 12px; border-radius: 999px; border: none; cursor: pointer; font-weight:600; }
+        .age-confirm { background: var(--button-bg); color: var(--button-text); }
+        .age-decline { background: transparent; color: var(--modal-text); border: 1px solid rgba(255,255,255,0.06); }
++        @media (prefers-color-scheme: light) {
++            :root {
++                --page-bg: #fff8d4;
++                --page-text: #222222;
++                --card-bg: #fffbdf;
++                --card-border: #d6c57d;
++                --label: #7a6700;
++                --muted: #444;
++                --button-bg: #f0de76;
++                --button-text: #111;
++                --modal-bg: #fffef5;
++                --modal-text: #111;
++                --modal-overlay: rgba(0,0,0,0.12);
++            }
++            .join-button:hover {
++                background: #f7e992;
++            }
++            .age-decline { border-color: rgba(0,0,0,0.08); }
++        }
+        /* Desktop: force inline, tighter widths */
+        @media (min-width: 900px) {
+            .main-layout { flex-wrap: nowrap; }
+            .stats-card-wrapper, .widget-wrapper { flex: 0 0 300px; max-width: 300px; }
+            .stats-card { max-width: 300px; }
+            .discord-widget { max-width: 300px; min-width: 300px; }
+        }
     </style>
 </head>
 
 <body>
-    <h1>Pee House Discord Community</h1>
-
-    <div id="website-join"></div>
-    <div id="server-stats">
-        <div id="stats-loading">Loading server statistics…</div>
-        <div id="stats-container"></div>
+    <!-- Age confirmation modal (minimal, non-annoying) -->
+    <div id="age-modal" aria-hidden="false">
+        <div class="age-modal-overlay"></div>
+        <div class="age-modal-box" role="dialog" aria-labelledby="age-modal-title" aria-describedby="age-modal-desc">
+            <div id="age-modal-title" class="age-modal-title">Age confirmation</div>
+            <div id="age-modal-desc" class="age-modal-desc">Pee House is an 18+ community. Please confirm you are 18 or older to continue.</div>
+            <div class="age-modal-actions">
+                <button id="age-confirm" class="age-btn age-confirm">I'm 18+</button>
+                <button id="age-decline" class="age-btn age-decline">Leave</button>
+            </div>
+        </div>
     </div>
 
-    <iframe src="https://discord.com/widget?id=1178054988266737784&theme=dark"
-            width="100%" height="500"
-            style="max-width: 520px;"
-            allowtransparency="true"
-            frameborder="25"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-    </iframe>
+    <div id="page-content">
+    <h1>Pee House Discord</h1>
+    <p>Our cozy 18+ space is the perfect place to make friends and let it all out!<br>
+We have two completely custom bots to track bladder holds and keep everyone safe.<br>
+Puddles are guaranteed... come make a splash!</p>
+
+    <div class="main-layout">
+        <div class="stats-card-wrapper">
+            <div id="server-stats">
+                <div id="stats-loading">Loading server statistics…</div>
+                <div id="stats-container"></div>
+            </div>
+        </div>
+        <div class="widget-wrapper">
+                <iframe id="discord-widget" class="discord-widget" src="https://discord.com/widget?id=1178054988266737784&theme=light"
+                    width="100%" height="500"
+                    allowtransparency="true"
+                    frameborder="0"
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+            </iframe>
+        </div>
+    </div>
+<p><center>
+    Join a welcoming, inclusive community of pissbrained dorks. 🤝<br>
+    🔞 18+ ONLY. Age verification required.<br>
+</center></p>
+    <div id="website-join" class="center-join"></div>
 
     <script>
+        // Age confirmation logic: minimal, non-annoying, remembers choice in localStorage
+        (function(){
+            const KEY = 'peehouse_age_confirmed_v1';
+            const modal = document.getElementById('age-modal');
+            const page = document.getElementById('page-content');
+            const confirmBtn = document.getElementById('age-confirm');
+            const declineBtn = document.getElementById('age-decline');
+
+            function showModal(show){
+                if(show){
+                    modal.setAttribute('aria-hidden','false');
+                    modal.style.display = 'block';
+                    if(page) page.style.filter = 'blur(1px)';
+                } else {
+                    modal.setAttribute('aria-hidden','true');
+                    modal.style.display = 'none';
+                    if(page) page.style.filter = '';
+                }
+            }
+
+            // initialize
+            try{
+                const ok = localStorage.getItem(KEY) === 'true';
+                if(ok){ showModal(false); } else { showModal(true); }
+            } catch(e){ showModal(true); }
+
+            confirmBtn.addEventListener('click', ()=>{
+                try{ localStorage.setItem(KEY,'true'); }catch(e){}
+                showModal(false);
+            });
+
+            declineBtn.addEventListener('click', ()=>{
+                // polite exit — send them to an informational page
+                window.location.href = 'https://www.google.com';
+            });
+        })();
+    </script>
+
+    <script>
+        const WIDGET_ID = '1178054988266737784';
         const API_BASE_URL = 'https://raw.githubusercontent.com/Pee-House/peehouse-site/main/stats.json';
         const TARGET_GUILD_ID = '1178054988266737784';
+
+        function setDiscordWidgetTheme() {
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            const theme = prefersLight ? 'light' : 'dark';
+            const iframe = document.getElementById('discord-widget');
+            if (iframe) {
+                iframe.src = `https://discord.com/widget?id=${WIDGET_ID}&theme=${theme}`;
+            }
+            const metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) {
+                metaTheme.content = prefersLight ? '#f8f2b6' : '#DDD618';
+            }
+        }
+
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+        setDiscordWidgetTheme();
+        if (prefersLight.addEventListener) {
+            prefersLight.addEventListener('change', setDiscordWidgetTheme);
+        } else if (prefersLight.addListener) {
+            prefersLight.addListener(setDiscordWidgetTheme);
+        }
 
         async function loadServerStats() {
             const loading = document.getElementById('stats-loading');
@@ -116,7 +296,7 @@
 
                 let inviteLine = "";
                 if (g.invite_url) {
-                    inviteLine = `<div class="stat-line"><a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">Join Pee House</a></div>`;
+                    inviteLine = `<div class="stat-line"><a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">PEE CHAT</a></div>`;
                     document.getElementById('website-join').innerHTML = inviteLine;
                 }
 
@@ -134,14 +314,21 @@
                 `;
 
                 container.appendChild(card);
+                updateDiscordHeight(card);
 
             } catch (error) {
                 loading.textContent = 'Unable to load server statistics.\n' + error;
             }
         }
 
+        function updateDiscordHeight(card) {
+            const discordIframe = document.getElementById('discord-widget');
+            if (!discordIframe || !card) return;
+            const newHeight = card.offsetHeight;
+            discordIframe.style.height = `${newHeight}px`;
+        }
+
         loadServerStats();
     </script>
-
 </body>
 </html>
