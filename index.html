@@ -125,31 +125,30 @@
         #age-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
         .age-modal-overlay { position: absolute; inset: 0; background: var(--modal-overlay); }
         .age-modal-box { position: relative; width: 320px; max-width: calc(100% - 40px); margin: 12vh auto; background: var(--modal-bg); color: var(--modal-text); border-radius: 8px; padding: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); border: 1px solid var(--card-border); text-align: center; }
-        .age-modal-title { font-weight:700; color: var(--button-bg); margin-bottom: 8px; }
         .age-modal-desc { font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; }
         .age-modal-actions { display:flex; gap:8px; justify-content:center; }
         .age-btn { padding: 8px 12px; border-radius: 999px; border: none; cursor: pointer; font-weight:600; }
         .age-confirm { background: var(--button-bg); color: var(--button-text); }
         .age-decline { background: transparent; color: var(--modal-text); border: 1px solid rgba(255,255,255,0.06); }
-+        @media (prefers-color-scheme: light) {
-+            :root {
-+                --page-bg: #fff8d4;
-+                --page-text: #222222;
-+                --card-bg: #fffbdf;
-+                --card-border: #d6c57d;
-+                --label: #7a6700;
-+                --muted: #444;
-+                --button-bg: #f0de76;
-+                --button-text: #111;
-+                --modal-bg: #fffef5;
-+                --modal-text: #111;
-+                --modal-overlay: rgba(0,0,0,0.12);
-+            }
-+            .join-button:hover {
-+                background: #f7e992;
-+            }
-+            .age-decline { border-color: rgba(0,0,0,0.08); }
-+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --page-bg: #fff8d4;
+                --page-text: #222222;
+                --card-bg: #fffbdf;
+                --card-border: #d6c57d;
+                --label: #7a6700;
+                --muted: #444;
+                --button-bg: #f0de76;
+                --button-text: #111;
+                --modal-bg: #fffef5;
+                --modal-text: #111;
+                --modal-overlay: rgba(0,0,0,0.12);
+            }
+            .join-button:hover {
+                background: #f7e992;
+            }
+            .age-decline { border-color: rgba(0,0,0,0.08); }
+        }
         /* Desktop: force inline, tighter widths */
         @media (min-width: 900px) {
             .main-layout { flex-wrap: nowrap; }
@@ -164,8 +163,7 @@
     <!-- Age confirmation modal (minimal, non-annoying) -->
     <div id="age-modal" aria-hidden="false">
         <div class="age-modal-overlay"></div>
-        <div class="age-modal-box" role="dialog" aria-labelledby="age-modal-title" aria-describedby="age-modal-desc">
-            <div id="age-modal-title" class="age-modal-title">Age confirmation</div>
+        <div class="age-modal-box" role="dialog" aria-describedby="age-modal-desc">
             <div id="age-modal-desc" class="age-modal-desc">Pee House is an 18+ community. Please confirm you are 18 or older to continue.</div>
             <div class="age-modal-actions">
                 <button id="age-confirm" class="age-btn age-confirm">I'm 18+</button>
@@ -201,6 +199,7 @@ Puddles are guaranteed... come make a splash!</p>
     🔞 18+ ONLY. Age verification required.<br>
 </center></p>
     <div id="website-join" class="center-join"></div>
+    </div>
 
     <script>
         // Age confirmation logic: minimal, non-annoying, remembers choice in localStorage
@@ -296,7 +295,7 @@ Puddles are guaranteed... come make a splash!</p>
 
                 let inviteLine = "";
                 if (g.invite_url) {
-                    inviteLine = `<div class="stat-line"><a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">PEE CHAT</a></div>`;
+                    inviteLine = `<div class="stat-line"><a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a></div>`;
                     document.getElementById('website-join').innerHTML = inviteLine;
                 }
 
