@@ -5,29 +5,58 @@
     <meta property="og:title" content="Pee House">
     <meta property="og:description" content="Bring a change of clothes! A comfy and inclusive 18+ pee chat for peebrained dorks.">
     <meta property="og:image" content="https://pee.house/assets/DrinkingAnime.gif">
-    <meta name="theme-color" content="#DDD618">
+    <meta name="theme-color" content="#f8f2b6">
     <link rel="icon" href="assets/ph-favicon.png" type="image/png" sizes="32x32">
     <link rel="shortcut icon" href="assets/ph-favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/ph-favicon.png">
 
     <style>
-
         h1 {color: #DDD618;}
         h9 {color: var(--label);} /* Linked directly to variables so it shifts nicely between modes */
+        
+        /* 1. SOLID DEFAULT STATE: LIGHT MODE */
         :root {
-            --page-bg: #18181c;
-            --page-text: #f3f4d3;
-            --card-bg: #1c1c1c;
-            --card-border: #333;
-            --label: #aaaaaa; /* Changed from light yellow to a clean, readable dark-mode gray */
-            --muted: #ddd;
-            --footer-text: #b79f20;
-            --footer-heading: #d3c31f;
-            --button-bg: #DDD618;
+            --page-bg: #fff8d4;
+            --page-text: #222222;
+            --card-bg: #fffbdf;
+            --card-border: #d6c57d;
+            --label: #555555;
+            --muted: #444;
+            --footer-text: #666;
+            --footer-heading: #4f4b3b;
+            --button-bg: #f0de76;
             --button-text: #111;
-            --modal-bg: #121212;
-            --modal-text: #fff;
-            --modal-overlay: rgba(0,0,0,0.6);
+            --modal-bg: #fffef5;
+            --modal-text: #111;
+            --modal-overlay: rgba(0,0,0,0.12);
+        }
+        
+        .join-button:hover {
+            background: #f7e992;
+        }
+        .age-decline { border-color: rgba(0,0,0,0.08); }
+
+        /* 2. STRICT OVERRIDE: DARK MODE ONLY */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --page-bg: #18181c;
+                --page-text: #f3f4d3;
+                --card-bg: #1c1c1c;
+                --card-border: #333;
+                --label: #aaaaaa;
+                --muted: #ddd;
+                --footer-text: #b79f20;
+                --footer-heading: #d3c31f;
+                --button-bg: #DDD618;
+                --button-text: #111;
+                --modal-bg: #121212;
+                --modal-text: #fff;
+                --modal-overlay: rgba(0,0,0,0.6);
+            }
+            .join-button:hover {
+                background: #ffeb3b;
+            }
+            .age-decline { border-color: rgba(255,255,255,0.06); }
         }
 
         body {
@@ -72,7 +101,7 @@
             min-width: 280px;
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid #333;
+            border: 1px solid var(--card-border);
             display: block;
         }
 
@@ -124,7 +153,6 @@
         }
 
         .join-button:hover {
-            background: #ffeb3b;
             transform: translateY(-1px);
         }
 
@@ -142,11 +170,12 @@
         }
 
         .center-join { text-align: center; margin-top: 16px; }
+        
         .footer-links {
             display: block;
             margin-top: 18px;
             padding-top: 18px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid var(--card-border);
             color: var(--footer-text);
             font-size: 0.82rem;
             line-height: 1.6;
@@ -179,29 +208,8 @@
         .age-modal-actions { display:flex; gap:8px; justify-content:center; }
         .age-btn { padding: 8px 12px; border-radius: 999px; border: none; cursor: pointer; font-weight:600; }
         .age-confirm { background: var(--button-bg); color: var(--button-text); }
-        .age-decline { background: transparent; color: var(--modal-text); border: 1px solid rgba(255,255,255,0.06); }
-        
-        @media (prefers-color-scheme: light) {
-            :root {
-                --page-bg: #fff8d4;
-                --page-text: #222222;
-                --card-bg: #fffbdf;
-                --card-border: #d6c57d;
-                --label: #555555; /* Fixed: Changed from a yellow-tinted olive to a highly visible charcoal gray */
-                --muted: #444;
-                --footer-text: #666;
-                --footer-heading: #4f4b3b;
-                --button-bg: #f0de76;
-                --button-text: #111;
-                --modal-bg: #fffef5;
-                --modal-text: #111;
-                --modal-overlay: rgba(0,0,0,0.12);
-            }
-            .join-button:hover {
-                background: #f7e992;
-            }
-            .age-decline { border-color: rgba(0,0,0,0.08); }
-        }
+        .age-decline { background: transparent; color: var(--modal-text); border: 1px solid var(--card-border); }
+
         /* Desktop: force inline, tighter widths */
         @media (min-width: 900px) {
             .main-layout { flex-wrap: nowrap; }
@@ -225,33 +233,36 @@
     </div>
 
     <div id="page-content">
-    <h1>Pee House Discord</h1>
-    <p>Our cozy 18+ space is the perfect place to make friends and let it all out!<br>
-We have two completely custom bots to track bladder holds and keep everyone safe.<br>
-Puddles are guaranteed... come make a splash!</p>
+        <h1>Pee House Discord</h1>
+        <p>Our cozy 18+ space is the perfect place to make friends and let it all out!<br>
+        We have two completely custom bots to track bladder holds and keep everyone safe.<br>
+        Puddles are guaranteed... come make a splash!</p>
 
-    <div class="main-layout">
-        <div class="stats-card-wrapper">
-            <div id="server-stats">
-                <div id="stats-loading">Loading server statistics…</div>
-                <div id="stats-container"></div>
+        <div class="main-layout">
+            <div class="stats-card-wrapper">
+                <div id="server-stats">
+                    <div id="stats-loading">Loading server statistics…</div>
+                    <div id="stats-container"></div>
+                </div>
+            </div>
+            <div class="widget-wrapper">
+                <iframe id="discord-widget" class="discord-widget" src="https://discord.com/widget?id=1178054988266737784&theme=light"
+                        width="100%" height="500"
+                        allowtransparency="true"
+                        frameborder="0"
+                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                </iframe>
             </div>
         </div>
-        <div class="widget-wrapper">
-                <iframe id="discord-widget" class="discord-widget" src="https://discord.com/widget?id=1178054988266737784&theme=light"
-                    width="100%" height="500"
-                    allowtransparency="true"
-                    frameborder="0"
-                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-            </iframe>
-        </div>
-    </div>
-<p><center>
-    <h9>Join a welcoming, inclusive community of peebrained dorks. 🤝<br>
-    🔞 18+ ONLY. Age verification required.<br></h9>
-</center></p>
-    <div id="website-join" class="center-join"></div>
-    <footer class="footer-links" aria-label="Find us on external Discord directories">
+        
+        <p><center>
+            <h9>Join a welcoming, inclusive community of peebrained dorks. 🤝<br>
+            🔞 18+ ONLY. Age verification required.<br></h9>
+        </center></p>
+        
+        <div id="website-join" class="center-join"></div>
+        
+        <footer class="footer-links" aria-label="Find us on external Discord directories">
             <span class="footer-label">Find us on:</span>
             <a href="https://disboard.org/server/1178054988266737784" target="_blank" rel="noopener">disboard</a>|
             <a href="https://discordify.net/server/pee/" target="_blank" rel="noopener">discordify</a>|
@@ -262,7 +273,7 @@ Puddles are guaranteed... come make a splash!</p>
             <a href="https://discordservers.io/server/91526-pee-house" target="_blank" rel="noopener">discordservers.io</a>|
             <a href="https://communityone.io/servers/1178054988266737784/pee-house/" target="_blank" rel="noopener">communityone</a>
 
-            <div style="margin-top: 16px; font-size: 0.645rem; opacity: 0.48;">
+            <div style="margin-top: 16px; font-size: 0.69rem; opacity: 0.40;">
                 &copy; 2026 Kitty Amo
             </div>
         </footer>
@@ -301,7 +312,6 @@ Puddles are guaranteed... come make a splash!</p>
             });
 
             declineBtn.addEventListener('click', ()=>{
-                // polite exit — send them to an informational page
                 window.location.href = 'https://www.google.com';
             });
         })();
@@ -313,24 +323,27 @@ Puddles are guaranteed... come make a splash!</p>
         const TARGET_GUILD_ID = '1178054988266737784';
 
         function setDiscordWidgetTheme() {
-            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-            const theme = prefersLight ? 'light' : 'dark';
+            const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
+            const theme = darkMq.matches ? 'dark' : 'light';
             const iframe = document.getElementById('discord-widget');
             if (iframe) {
-                iframe.src = `https://discord.com/widget?id=${WIDGET_ID}&theme=${theme}`;
+                const src = `https://discord.com/widget?id=${WIDGET_ID}&theme=${theme}`;
+                if (iframe.src !== src) iframe.src = src;
             }
             const metaTheme = document.querySelector('meta[name="theme-color"]');
             if (metaTheme) {
-                metaTheme.content = prefersLight ? '#f8f2b6' : '#DDD618';
+                metaTheme.content = theme === 'light' ? '#f8f2b6' : '#DDD618';
             }
+            if (window.console && console.debug) console.debug('Theme set to', theme, 'darkMatches=', darkMq.matches);
         }
 
-        const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+        const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
         setDiscordWidgetTheme();
-        if (prefersLight.addEventListener) {
-            prefersLight.addEventListener('change', setDiscordWidgetTheme);
-        } else if (prefersLight.addListener) {
-            prefersLight.addListener(setDiscordWidgetTheme);
+        const mqHandler = () => setDiscordWidgetTheme();
+        if (darkMq.addEventListener) {
+            darkMq.addEventListener('change', mqHandler);
+        } else if (darkMq.addListener) {
+            darkMq.addListener(mqHandler);
         }
 
         async function loadServerStats() {
