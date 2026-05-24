@@ -106,20 +106,36 @@
 
         .join-button {
             display: inline-block;
-            margin-bottom: 16px;
+            margin: 8px 6px 12px;
             padding: 12px 20px;
             border-radius: 999px;
             background: var(--button-bg);
             color: var(--button-text);
             font-weight: bold;
             text-decoration: none;
-            transition: background 0.2s ease;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .join-button:hover {
             background: #ffeb3b;
+            transform: translateY(-1px);
         }
+
+        .secondary-link {
+            display: inline-block;
+            margin-top: 6px;
+            color: var(--page-text);
+            font-size: 0.92rem;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+        .secondary-link:hover {
+            color: var(--button-bg);
+        }
+
         .center-join { text-align: center; margin-top: 16px; }
+        .hidden-links { display: none; }
 
         /* Age modal styles */
         #age-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
@@ -199,6 +215,13 @@ Puddles are guaranteed... come make a splash!</p>
     🔞 18+ ONLY. Age verification required.<br>
 </center></p>
     <div id="website-join" class="center-join"></div>
+    <div class="hidden-links">
+        <a href="https://discadia.com/server/peee/">discadia</a>
+        <a href="https://discodus.com/server/1178054988266737784">discodus</a>
+        <a href="https://discords.com/servers/pee">discords</a>
+        <a href="https://discord.me/peee">discord.me</a>
+        <a href="https://discordservers.io/server/91526-pee-house">discordservers</a>
+    </div>
     </div>
 
     <script>
@@ -295,7 +318,13 @@ Puddles are guaranteed... come make a splash!</p>
 
                 let inviteLine = "";
                 if (g.invite_url) {
-                    inviteLine = `<div class="stat-line"><a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a></div>`;
+                    inviteLine = `
+                        <div class="stat-line">
+                            <a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a>
+                        </div>
+                        <div class="stat-line">
+                            <a class="secondary-link" href="https://disboard.org/server/1178054988266737784" target="_blank" rel="noopener">Check us out on Disboard</a>
+                        </div>`;
                     document.getElementById('website-join').innerHTML = inviteLine;
                 }
 
