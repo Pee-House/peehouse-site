@@ -312,25 +312,29 @@ Puddles are guaranteed... come make a splash!</p>
         const API_BASE_URL = 'https://raw.githubusercontent.com/Pee-House/peehouse-site/main/stats.json';
         const TARGET_GUILD_ID = '1178054988266737784';
 
+        // Use a dark-first media query to avoid ambiguity in some browsers
         function setDiscordWidgetTheme() {
-            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-            const theme = prefersLight ? 'light' : 'dark';
+            const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
+            const theme = darkMq.matches ? 'dark' : 'light';
             const iframe = document.getElementById('discord-widget');
             if (iframe) {
-                iframe.src = `https://discord.com/widget?id=${WIDGET_ID}&theme=${theme}`;
+                const src = `https://discord.com/widget?id=${WIDGET_ID}&theme=${theme}`;
+                if (iframe.src !== src) iframe.src = src;
             }
             const metaTheme = document.querySelector('meta[name="theme-color"]');
             if (metaTheme) {
-                metaTheme.content = prefersLight ? '#f8f2b6' : '#DDD618';
+                metaTheme.content = theme === 'light' ? '#f8f2b6' : '#DDD618';
             }
+            if (window.console && console.debug) console.debug('Theme set to', theme, 'darkMatches=', darkMq.matches);
         }
 
-        const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+        const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
         setDiscordWidgetTheme();
-        if (prefersLight.addEventListener) {
-            prefersLight.addEventListener('change', setDiscordWidgetTheme);
-        } else if (prefersLight.addListener) {
-            prefersLight.addListener(setDiscordWidgetTheme);
+        const mqHandler = () => setDiscordWidgetTheme();
+        if (darkMq.addEventListener) {
+            darkMq.addEventListener('change', mqHandler);
+        } else if (darkMq.addListener) {
+            darkMq.addListener(mqHandler);
         }
 
         async function loadServerStats() {
