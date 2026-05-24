@@ -11,8 +11,7 @@
     <link rel="apple-touch-icon" href="assets/ph-favicon.png">
 
     <style>
-        h1 {color: #DDD618;}
-        h9 {color: var(--label);} /* Linked directly to variables so it shifts nicely between modes */
+        h1 { color: #DDD618; }
         
         /* 1. SOLID DEFAULT STATE: LIGHT MODE */
         :root {
@@ -36,7 +35,7 @@
         }
         .age-decline { border-color: rgba(0,0,0,0.08); }
 
-        /* 2. STRICT OVERRIDE: DARK MODE ONLY */
+        /* 2. STRICT OVERRIDE: DARK MODE ONLY WHEN SPECIFICALLY REQUESTED */
         @media (prefers-color-scheme: dark) {
             :root {
                 --page-bg: #18181c;
@@ -171,6 +170,12 @@
 
         .center-join { text-align: center; margin-top: 16px; }
         
+        .community-note {
+            text-align: center;
+            margin: 16px auto;
+            color: var(--label);
+        }
+        
         .footer-links {
             display: block;
             margin-top: 18px;
@@ -255,10 +260,10 @@
             </div>
         </div>
         
-        <p><center>
-            <h9>Join a welcoming, inclusive community of peebrained dorks. 🤝<br>
-            🔞 18+ ONLY. Age verification required.<br></h9>
-        </center></p>
+        <div class="community-note">
+            Join a welcoming, inclusive community of peebrained dorks. 🤝<br>
+            🔞 18+ ONLY. Age verification required.<br>
+        </div>
         
         <div id="website-join" class="center-join"></div>
         
