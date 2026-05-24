@@ -45,21 +45,38 @@
             margin-top: 10px;
             font-style: italic;
         }
+
+        .join-button {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            background: #DDD618;
+            color: #111;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .join-button:hover {
+            background: #ffeb3b;
+        }
     </style>
 </head>
 
 <body>
     <h1>Pee House Discord Community</h1>
 
+    <div id="website-join"></div>
     <div id="server-stats">
         <div id="stats-loading">Loading server statistics…</div>
         <div id="stats-container"></div>
     </div>
 
     <iframe src="https://discord.com/widget?id=1178054988266737784&theme=dark"
-            width="700" height="1000"
+            width="350" height="500"
             allowtransparency="true"
-            frameborder="10"
+            frameborder="25"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
     </iframe>
 
@@ -92,6 +109,12 @@
                 let vcLine = "";
                 if (g.voice_members > 0) {
                     vcLine = `<div class="stat-line"><span class="stat-label">In VC:</span> ${g.voice_members}</div>`;
+                }
+
+                let inviteLine = "";
+                if (g.invite_url) {
+                    inviteLine = `<div class="stat-line"><a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">Join Pee House</a></div>`;
+                    document.getElementById('website-join').innerHTML = inviteLine;
                 }
 
                 card.innerHTML = `
