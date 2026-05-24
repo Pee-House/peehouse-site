@@ -15,6 +15,7 @@
             --card-border: #333;
             --label: #f0e68c;
             --muted: #ddd;
+            --footer-text: #b79f20;
             --button-bg: #DDD618;
             --button-text: #111;
             --modal-bg: #121212;
@@ -134,7 +135,34 @@
         }
 
         .center-join { text-align: center; margin-top: 16px; }
-        .hidden-links { display: none; }
+        .footer-links {
+            display: block;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: var(--footer-text);
+            font-size: 0.82rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-links a {
+            color: var(--footer-text);
+            text-decoration: none;
+            margin: 0 6px;
+        }
+        .footer-links a:hover {
+            color: var(--button-bg);
+            text-decoration: underline;
+        }
+        .footer-links .footer-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--page-text);
+        }
 
         /* Age modal styles */
         #age-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
@@ -153,6 +181,7 @@
                 --card-border: #d6c57d;
                 --label: #7a6700;
                 --muted: #444;
+                --footer-text: #666;
                 --button-bg: #f0de76;
                 --button-text: #111;
                 --modal-bg: #fffef5;
@@ -214,13 +243,15 @@ Puddles are guaranteed... come make a splash!</p>
     🔞 18+ ONLY. Age verification required.<br>
 </center></p>
     <div id="website-join" class="center-join"></div>
-    <div class="hidden-links">
-        <a href="https://discadia.com/server/peee/">discadia</a>
-        <a href="https://discodus.com/server/1178054988266737784">discodus</a>
-        <a href="https://discords.com/servers/pee">discords</a>
-        <a href="https://discord.me/peee">discord.me</a>
-        <a href="https://discordservers.io/server/91526-pee-house">discordservers</a>
-    </div>
+    <footer class="footer-links" aria-label="Find us on external Discord directories">
+        <span class="footer-label">Find us on:</span>
+        <a href="https://disboard.org/server/1178054988266737784" target="_blank" rel="noopener">disboard</a>|
+        <a href="https://discodus.com/server/1178054988266737784" target="_blank" rel="noopener">discodus</a>|
+        <a href="https://discadia.com/server/peee/" target="_blank" rel="noopener">discadia</a>|
+        <a href="https://discord.me/peee" target="_blank" rel="noopener">discord.me</a>|
+        <a href="https://discords.com/servers/pee" target="_blank" rel="noopener">discords.com</a>|
+        <a href="https://discordservers.io/server/91526-pee-house" target="_blank" rel="noopener">discordservers.io</a>
+    </footer>
     </div>
 
     <script>
@@ -321,9 +352,7 @@ Puddles are guaranteed... come make a splash!</p>
                         <div class="stat-line">
                             <a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a>
                         </div>
-                        <div class="stat-line">
-                            <a class="secondary-link" href="https://disboard.org/server/1178054988266737784" target="_blank" rel="noopener">Check us out on Disboard</a>
-                        </div>`;
+                    `;
                     document.getElementById('website-join').innerHTML = inviteLine;
                 }
 
