@@ -13,13 +13,13 @@
     <style>
 
         h1 {color: #DDD618;}
-        h9 {color: #f0e68c;}
+        h9 {color: var(--label);} /* Linked directly to variables so it shifts nicely between modes */
         :root {
             --page-bg: #18181c;
             --page-text: #f3f4d3;
             --card-bg: #1c1c1c;
             --card-border: #333;
-            --label: #f0e68c;
+            --label: #aaaaaa; /* Changed from light yellow to a clean, readable dark-mode gray */
             --muted: #ddd;
             --footer-text: #b79f20;
             --footer-heading: #d3c31f;
@@ -180,13 +180,14 @@
         .age-btn { padding: 8px 12px; border-radius: 999px; border: none; cursor: pointer; font-weight:600; }
         .age-confirm { background: var(--button-bg); color: var(--button-text); }
         .age-decline { background: transparent; color: var(--modal-text); border: 1px solid rgba(255,255,255,0.06); }
+        
         @media (prefers-color-scheme: light) {
             :root {
                 --page-bg: #fff8d4;
                 --page-text: #222222;
                 --card-bg: #fffbdf;
                 --card-border: #d6c57d;
-                --label: #7a6700;
+                --label: #555555; /* Fixed: Changed from a yellow-tinted olive to a highly visible charcoal gray */
                 --muted: #444;
                 --footer-text: #666;
                 --footer-heading: #4f4b3b;
@@ -212,7 +213,6 @@
 </head>
 
 <body>
-    <!-- Age confirmation modal (minimal, non-annoying) -->
     <div id="age-modal" aria-hidden="false">
         <div class="age-modal-overlay"></div>
         <div class="age-modal-box" role="dialog" aria-describedby="age-modal-desc">
@@ -248,7 +248,7 @@ Puddles are guaranteed... come make a splash!</p>
     </div>
 <p><center>
     <h9>Join a welcoming, inclusive community of peebrained dorks. 🤝<br>
-    🔞 18+ ONLY. Age verification required.<br></h9></center>
+    🔞 18+ ONLY. Age verification required.<br></h9>
 </center></p>
     <div id="website-join" class="center-join"></div>
     <footer class="footer-links" aria-label="Find us on external Discord directories">
