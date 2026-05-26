@@ -395,9 +395,9 @@
 
                     <br>
 
-                    <div class="stat-line"><span class="stat-label">Active last 24h:</span> ${g.activity.recent_24h ?? 'not available'}</div>
-                    <div class="stat-line"><span class="stat-label">Active last 7d:</span> ${g.activity.recent_7d ?? 'temporary error'}</div>
-                    <div class="stat-line"><span class="stat-label">Active last 30d:</span> ${g.activity.recent_30d ?? 'try again later'}</div>
+                    <div class="stat-line"><span class="stat-label">Active last 24h:</span> ${g.activity.recent_24h ?? 'temporary error'}</div>
+                    <div class="stat-line"><span class="stat-label">Active last 7d:</span> ${g.activity.recent_7d ?? 'stats unavailable'}</div>
+                    <div class="stat-line"><span class="stat-label">Active last 30d:</span> ${g.activity.recent_30d ?? 'check again later'}</div>
                 `;
 
                 container.appendChild(card);
