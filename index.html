@@ -244,8 +244,14 @@
 
         .footer-patreon-wrapper {
             margin-bottom: 14px;
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Adds space between the buttons */
+            flex-wrap: wrap; /* Keeps it clean on mobile screens */
         }
-        .footer-patreon-link {
+        
+        /* Shared button styles */
+        .footer-btn {
             display: inline-block;
             font-size: 0.8rem;
             font-weight: bold;
@@ -257,9 +263,18 @@
             color: var(--page-text) !important;
             transition: background 0.2s ease, color 0.2s ease;
         }
-        .footer-patreon-link:hover {
-            background: #FF424D; /* Changed from var(--button-bg) to fill with Patreon Orange */
-            color: #ffffff !important; /* Changed to white text on hover so it remains readable */
+
+        /* Patreon Specific Hover */
+        .footer-btn.patreon:hover {
+            background: #FF424D; /* Patreon Orange */
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+
+        /* Discord Nitro Specific Hover */
+        .footer-btn.nitro:hover {
+            background: #5865F2; /* Discord Blurple */
+            color: #ffffff !important;
             text-decoration: none !important;
         }
 
@@ -328,10 +343,13 @@
         
         <div id="website-join" class="center-join"></div>
         
-        <footer class="footer-links" aria-label="Find us on external Discord directories">
+<footer class="footer-links" aria-label="Find us on external Discord directories">
             <div class="footer-patreon-wrapper">
-                <a href="https://patreon.pee.house" target="_blank" rel="noopener" class="footer-patreon-link">
+                <a href="https://patreon.pee.house" target="_blank" rel="noopener" class="footer-btn patreon">
                     SUPPORT ON PATREON
+                </a>
+                <a href="https://pee.house/gift-discord-nitro.html" target="_blank" rel="noopener" class="footer-btn nitro">
+                    GIFT NITRO (2 BOOSTS)
                 </a>
             </div>
 

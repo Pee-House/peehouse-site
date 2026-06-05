@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gift Nitro - Pee House</title>
+    <meta property="og:title" content="Gift Nitro to Pee House">
+    <meta property="og:description" content="Want to support the Pee House? Here is how you can gift Discord Nitro to the owner!">
+    <meta property="og:image" content="https://pee.house/assets/DrinkingAnime.gif">
+    <meta name="theme-color" content="#f8f2b6">
+    <link rel="icon" href="assets/ph-favicon.png" type="image/png" sizes="32x32">
+    <link rel="shortcut icon" href="assets/ph-favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/ph-favicon.png">
+
+    <style>
+        h1 { color: #DDD618; }
+        h2 { color: var(--label); margin-top: 0; }
+        
+        /* 1. SOLID DEFAULT STATE: LIGHT MODE */
+        :root {
+            --page-bg: #fff8d4;
+            --page-text: #786f40;
+            --card-bg: #fffbdf;
+            --card-border: #d6c57d;
+            --label: #8f8a25;
+            --muted: #444;
+            --footer-text: #b4b183bd;
+            --footer-heading: #d7d2a7c3;
+            --button-bg: #c9c97e;
+            --button-text: #3e3e26;
+            --modal-bg: #fffef5;
+            --modal-text: #111;
+            --modal-overlay: rgba(0,0,0,0.12);
+        }
+        
+        .join-button:hover {
+            background: #f7e992;
+        }
+
+        /* 2. DARK MODE WHEN REQUESTED */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --page-bg: #2c2c2c;
+                --page-text: #f3f4d3;
+                --card-bg: #595959;
+                --card-border: #333;
+                --label: #bdbb4e;
+                --muted: #ddd;
+                --footer-text: #c7bb6336;
+                --footer-heading: #d3c41f1a;
+                --button-bg: #DDD618;
+                --button-text: #111;
+                --modal-bg: #121212;
+                --modal-text: #fff;
+                --modal-overlay: rgba(0,0,0,0.6);
+            }
+            .join-button:hover {
+                background: #ffeb3b;
+            }
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--page-bg);
+            color: var(--page-text);
+            padding: 20px;
+        }
+
+        /* Container layouts */
+        .gift-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 650px;
+            box-sizing: border-box;
+            margin-bottom: 24px;
+        }
+
+        .gift-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            text-align: left;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .preferred-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #DDD618;
+            color: #111;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .preferred-badge {
+                background: #ffeb3b;
+            }
+        }
+
+        /* Step instructions list styling */
+        .instruction-steps {
+            padding-left: 20px;
+            margin: 14px 0;
+            line-height: 1.6;
+        }
+        .instruction-steps li {
+            margin-bottom: 8px;
+        }
+
+        .join-button {
+            display: inline-block;
+            margin: 12px 0 4px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.2s ease, transform 0.2s ease;
+            text-align: center;
+        }
+
+        .join-button:hover {
+            transform: translateY(-1px);
+        }
+        
+        .join-button.blurple:hover {
+            background: #5865F2; /* Discord Color override */
+            color: #fff !important;
+        }
+
+        .banner-hero {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: -20px auto 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border: 2px solid var(--card-border);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 250px;
+            object-fit: cover;
+            min-height: 150px;
+        }
+
+        .banner-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            color: #DDD618;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            text-align: center;
+            padding: 24px 20px 16px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.6) 100%);
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.5px;
+            z-index: 10;
+        }
+        
+        .back-home {
+            margin-top: 10px;
+            display: inline-block;
+            color: var(--page-text);
+            text-decoration: underline;
+            font-size: 0.95rem;
+        }
+        .back-home:hover {
+            color: var(--label);
+        }
+
+        .footer-links {
+            display: block;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--card-border);
+            color: var(--footer-text);
+            font-size: 0.777rem;
+            line-height: 1.6;
+            text-align: center;
+            width: 100%;
+            max-width: 650px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-content">
+        <div class="banner-hero">
+            <img src="assets/90c8fb15252240ecac259674f3ed7392.png" alt="Pee House Banner" class="banner-image" loading="lazy">
+            <h1 class="banner-title">Pee House Discord</h1>
+        </div>
+
+        <p style="max-width: 600px; margin: 0 auto 24px;">
+            Want to help keep the server boosted and the community thriving? <br>
+            Gifting Discord Nitro is a great way to show your appreciation! <br>
+            All Nitro gifts sent to Momo will be used to boost the server.
+        </p>
+
+        <!-- Main Content Layout -->
+        <div class="gift-layout">
+            
+            <!-- Route 1: Direct DM Gifting (Most Preferred) -->
+            <div class="gift-card">
+                <span class="preferred-badge">Most Preferred</span>
+                <h2>Option 1: Directly through a DM</h2>
+                <p>Gifting directly in a DM is the easiest way to send Nitro and allows you to completely customize your gift link:</p>
+                
+                <ol class="instruction-steps">
+                    <li>Push the button below to open Momo's profile and select <strong>Send Message</strong>.</li>
+                    <li>Click the <strong>Gift Icon</strong> (<img src="https://abs.twimg.com/emoji/v2/72x72/1f381.png" width="16" height="16" style="vertical-align: text-bottom;" alt="gift">) located at the side of the Discord text box.</li>
+                    <li>Select the plan you'd like to send and optionally customize the gift.</li>
+                    <li>Complete your purchase and a Nitro subscription will be delivered to Momo!</li>
+                </ol>
+
+                <div style="text-align: center;">
+                    <a href="https://discord.com/users/555797660507045941" target="_blank" rel="noopener" class="join-button blurple">
+                        OPEN PROFILE
+                    </a>
+                </div>
+            </div>
+
+            <!-- Route 2: Traditional Link Gifting -->
+            <div class="gift-card">
+                <h2>Option 2: From the settings menu</h2>
+                <p>If you prefer to generate and send a standalone URL voucher, follow these steps:</p>
+                
+                <ol class="instruction-steps">
+                    <li>Navigate to your <strong>User Settings</strong> and select the <strong>Nitro</strong> tab.</li>
+                    <li>Choose <strong>Gift Nitro</strong>, select the <strong>$9.99 plan</strong> and complete checkout.</li>
+                    <li>Discord will generate a <code>discord.gift/xxxx</code> link. Send this link to Momo in a DM.</li>
+                </ol>
+            </div>
+
+            <!-- Route 3: Gift Card Route -->
+            <div class="gift-card">
+                <h2>Option 3: Digital gift card</h2>
+                <p>Perfect for supporters residing within the United States or EU who wish to use standard external payment methods via external digital retailers:</p>
+                
+                <ol class="instruction-steps">
+                    <li>Push the button below to see the Discord Nitro gift card on Amazon, or navigate to your favorite digital retailer.</li>
+                    <li>Choose how many months of Nitro you want to gift and complete checkout to purchase the digital code.</li>
+                    <li>Amazon will deliver a digital voucher code to your email; or if using a different retailer, follow their instructions to receive the code.</li>
+                    <li>Copy this gift code and send it directly to Momo in a DM.</li>
+                </ol>
+
+                <div style="text-align: center;">
+                    <a href="https://www.amazon.com/Discord-Nitro-1-Month-Subscription-Digital/dp/B0CF4J58QK" target="_blank" rel="noopener" class="join-button">
+                        GO TO AMAZON
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        
+        <a href="index.html" class="back-home">← Back to homepage</a>
+        
+        <!-- Matching Footer -->
+        <footer class="footer-links">
+            <div style="font-size: 0.76rem; opacity: 0.67;">
+                &copy;2026 Kitty Amo
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Synchronizes theme overrides dynamically for system-wide light/dark changes 
+        function setThemeMeta() {
+            const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
+            const metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) {
+                metaTheme.content = darkMq.matches ? '#DDD618' : '#f8f2b6';
+            }
+        }
+        setThemeMeta();
+        const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
+        if (darkMq.addEventListener) darkMq.addEventListener('change', setThemeMeta);
+    </script>
+</body>
+</html>
