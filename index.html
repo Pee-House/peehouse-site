@@ -205,6 +205,27 @@
             color: var(--footer-heading);
         }
 
+        .footer-patreon-wrapper {
+            margin-bottom: 14px;
+        }
+        .footer-patreon-link {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            padding: 6px 16px;
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            color: var(--page-text) !important;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .footer-patreon-link:hover {
+            background: #FF424D; /* Changed from var(--button-bg) to fill with Patreon Orange */
+            color: #ffffff !important; /* Changed to white text on hover so it remains readable */
+            text-decoration: none !important;
+        }
+
         /* Age modal styles */
         #age-modal { position: fixed; inset: 0; display: none; z-index: 9999; }
         .age-modal-overlay { position: absolute; inset: 0; background: var(--modal-overlay); }
@@ -268,6 +289,12 @@
         <div id="website-join" class="center-join"></div>
         
         <footer class="footer-links" aria-label="Find us on external Discord directories">
+            <div class="footer-patreon-wrapper">
+                <a href="https://patreon.pee.house" target="_blank" rel="noopener" class="footer-patreon-link">
+                    SUPPORT ON PATREON
+                </a>
+            </div>
+
             <span class="footer-label">Find us on:</span>
             <a href="https://disboard.org/server/1178054988266737784" target="_blank" rel="noopener">disboard</a>|
             <a href="https://discordify.net/server/pee/" target="_blank" rel="noopener">discordify</a>|
