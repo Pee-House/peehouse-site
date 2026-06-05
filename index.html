@@ -13,7 +13,7 @@
     <style>
         h1 { color: #DDD618; }
         
-        /* 1. SOLID DEFAULT STATE: LIGHT MODE */
+        /* 1. DEFAULT LIGHT MODE */
         :root {
             --page-bg: #fff8d4;
             --page-text: #786f40;
@@ -37,7 +37,7 @@
         }
         .age-decline { border-color: rgba(0,0,0,0.08); }
 
-        /* 2. STRICT OVERRIDE: DARK MODE ONLY WHEN SPECIFICALLY REQUESTED */
+        /* 2. DARK MODE WHEN REQUESTED */
         @media (prefers-color-scheme: dark) {
             :root {
                 --page-bg: #2c2c2c;
@@ -231,7 +231,7 @@
             display: block;
             margin-top: 18px;
             padding-top: 18px;
-            border-top: 1px solid var(--card-border);
+            border-top: 2px solid var(--card-border);
             color: var(--footer-text);
             font-size: 0.777rem;
             line-height: 1.6;
