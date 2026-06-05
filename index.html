@@ -28,6 +28,8 @@
             --modal-bg: #fffef5;
             --modal-text: #111;
             --modal-overlay: rgba(0,0,0,0.12);
+            --title-color: #DDD618;
+            --title-hover: #fff37a;
         }
         
         .join-button:hover {
@@ -51,6 +53,8 @@
                 --modal-bg: #121212;
                 --modal-text: #fff;
                 --modal-overlay: rgba(0,0,0,0.6);
+                --title-color: #DDD618;
+                --title-hover: #ffeb3b;
             }
             .join-button:hover {
                 background: #ffeb3b;
@@ -190,13 +194,18 @@
             min-height: 200px;
         }
 
+        .banner-title-link {
+            text-decoration: none;
+            display: block;
+        }
+
         .banner-title {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             margin: 0;
-            color: #DDD618;
+            color: var(--title-color);
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 700;
             text-align: center;
@@ -205,6 +214,11 @@
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
             letter-spacing: 0.5px;
             z-index: 10;
+            transition: color 0.2s ease;
+        }
+
+        .banner-title-link:hover .banner-title {
+            color: var(--title-hover);
         }
         
         .community-note {
@@ -313,7 +327,9 @@
     <div id="page-content">
         <div class="banner-hero">
             <img src="assets/90c8fb15252240ecac259674f3ed7392.png" alt="Pee House - Anime characters enjoying together" class="banner-image" loading="lazy">
-            <h1 class="banner-title">Pee House Discord</h1>
+            <a href="index.html" class="banner-title-link">
+                <h1 class="banner-title">Pee House Discord</h1>
+            </a>
         </div>
         <p>This cozy 18+ space is the perfect place to make friends and let it all out!<br>
         We have two completely custom bots to track bladder holds and keep everyone safe.<br>

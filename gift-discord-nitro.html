@@ -30,6 +30,8 @@
             --modal-text: #111;
             --modal-overlay: rgba(0,0,0,0.12);
             --inline-link: #8f8a25; /* Custom light mode link color */
+            --title-color: #DDD618;
+            --title-hover: #fff37a; /* Slightly brighter yellow on hover */
         }
         
         .join-button:hover {
@@ -45,7 +47,7 @@
                 --card-border: #333;
                 --label: #bdbb4e;
                 --muted: #ddd;
-                --footer-text: #c7bb6336;
+                --footer-text: #c7bb6378;
                 --footer-heading: #d3c41f1a;
                 --button-bg: #DDD618;
                 --button-text: #111;
@@ -53,6 +55,8 @@
                 --modal-text: #fff;
                 --modal-overlay: rgba(0,0,0,0.6);
                 --inline-link: #ffeb3b; /* Custom dark mode link color */
+                --title-color: #DDD618;
+                --title-hover: #ffeb3b;
             }
             .join-button:hover {
                 background: #ffeb3b;
@@ -174,13 +178,19 @@
             min-height: 150px;
         }
 
+        /* Header link container adjustments */
+        .banner-title-link {
+            text-decoration: none;
+            display: block;
+        }
+
         .banner-title {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             margin: 0;
-            color: #DDD618;
+            color: var(--title-color);
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 700;
             text-align: center;
@@ -189,6 +199,12 @@
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
             letter-spacing: 0.5px;
             z-index: 10;
+            transition: color 0.2s ease;
+        }
+        
+        /* Gives a subtle, responsive illumination hint that it's clickable */
+        .banner-title-link:hover .banner-title {
+            color: var(--title-hover);
         }
         
         .back-home {
@@ -203,8 +219,10 @@
         }
 
         .footer-links {
-            display: block;
-            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 18px auto 0; 
             padding-top: 18px;
             border-top: 1px solid var(--card-border);
             color: var(--footer-text);
@@ -213,6 +231,7 @@
             text-align: center;
             width: 100%;
             max-width: 650px;
+            box-sizing: border-box; /* Prevents padding from shifting the box balance */
         }
     </style>
 </head>
@@ -221,7 +240,9 @@
     <div id="page-content">
         <div class="banner-hero">
             <img src="assets/90c8fb15252240ecac259674f3ed7392.png" alt="Pee House Banner" class="banner-image" loading="lazy">
-            <h1 class="banner-title">Pee House Discord</h1>
+            <a href="index.html" class="banner-title-link">
+                <h1 class="banner-title">Pee House Discord</h1>
+            </a>
         </div>
 
         <p style="max-width: 600px; margin: 0 auto 24px;">
@@ -230,10 +251,8 @@
             Every Nitro subscription sent will be used to boost the server.
         </p>
 
-        <!-- Main Content Layout -->
         <div class="gift-layout">
             
-            <!-- Route 1: Direct DM Gifting (Most Preferred) -->
             <div class="gift-card">
                 <span class="preferred-badge">Most Preferred</span>
                 <h2>Option 1: Directly in a DM</h2>
@@ -253,7 +272,6 @@
                 </div>
             </div>
 
-            <!-- Route 2: Traditional Link Gifting -->
             <div class="gift-card">
                 <h2>Option 2: From the settings menu</h2>
                 <p>If you prefer to generate and send a standalone URL voucher, follow these steps:</p>
@@ -265,7 +283,6 @@
                 </ol>
             </div>
 
-            <!-- Route 3: Gift Card Route -->
             <div class="gift-card">
                 <h2>Option 3: Digital gift card</h2>
                 <p>Supporters residing within the United States or EU who wish to use other payment methods via external digital retailers:</p>
@@ -288,7 +305,6 @@
         
         <a href="index.html" class="back-home">← Back to homepage</a>
         
-        <!-- Matching Footer -->
         <footer class="footer-links">
             <div style="font-size: 0.76rem; opacity: 0.67;">
                 &copy;2026 Kitty Amo
