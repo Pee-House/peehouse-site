@@ -146,7 +146,8 @@
         .join-button {
             display: inline-block;
             margin: 8px 6px 12px;
-            padding: 12px 20px;
+            padding: 16px 32px; /* Increased padding for a larger overall size */
+            font-size: 1.2rem; /* Added font-size to make the text bigger */
             border-radius: 999px;
             background: var(--button-bg);
             color: var(--button-text);
@@ -154,6 +155,7 @@
             text-decoration: none;
             transition: background 0.2s ease, transform 0.2s ease;
         }
+
 
         .join-button:hover {
             transform: translateY(-1px);
@@ -172,7 +174,7 @@
             color: var(--button-bg);
         }
 
-        .center-join { text-align: center; margin-top: 16px; }
+        .center-join { text-align: center; margin-top: 10px; }
         
         .banner-hero {
             position: relative;
@@ -404,15 +406,19 @@
     </div>
     <div id="page-content">
         <div class="banner-hero">
-            <img src="assets/90c8fb15252240ecac259674f3ed7392.png" alt="Pee House - Anime characters enjoying together" class="banner-image" loading="lazy">
+            <img src="assets/90c8fb15252240ecac259674f3ed7392.png" alt="Pee House - Anime girl chugging water drink" class="banner-image" loading="lazy">
             <a href="index.html" class="banner-title-link">
                 <h1 class="banner-title">Pee House Discord</h1>
             </a>
         </div>
         <p>This cozy 18+ space is the perfect place to make friends and let it all out!<br>
-        We have two completely custom bots to track bladder holds and keep everyone safe.<br>
+        We have two custom-built Discord bots to track bladder holds and keep everyone safe.<br>
+        
+        Our community is highly active and rapidly growing, with members from all over the world.<br>
         Puddles are guaranteed... come make a splash!</p>
 
+
+</div>
         <div class="main-layout">
             <div class="stats-card-wrapper">
                 <div id="server-stats">
@@ -436,7 +442,26 @@
         </div>
         
         <div id="website-join" class="center-join"></div>
+            <h2 style="color: var(--label); margin-top: 15px; font-size: 1.6rem;">What’s Inside the House?</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; max-width: 800px; margin: 0 auto 32px; text-align: left;">
         
+        <!-- Feature 1: Custom Bots -->
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); padding: 16px; border-radius: 8px; flex: 1 1 250px; box-sizing: border-box;">
+            <h3 style="margin-top: 0; color: var(--page-text);">🤖 TWO Custom Bots</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 0;">Meet Lumei and Kemono, our exclusive and built-from-scratch Discord bots. Take on interactive bladder challenges, participate in events, play blackjack, smoke cigarettes, collect items and more!</p>
+        </div>
+
+        <!-- Feature 2: Vetting & Safety -->
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); padding: 16px; border-radius: 8px; flex: 1 1 250px; box-sizing: border-box;">
+            <h3 style="margin-top: 0; color: var(--page-text);">🔐 Automated Vetting</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 0;">Our custom-built EXP system lets you control your experience and comfort level.  Members gradually unlock new permissions and channels just by participating in the community.</p>
+        </div>
+
+        <!-- Feature 3: Inclusive Space -->
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); padding: 16px; border-radius: 8px; flex: 1 1 250px; box-sizing: border-box;">
+            <h3 style="margin-top: 0; color: var(--page-text);">🛡️ You're Safe Here</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 0;">Pee House was founded on the principle that safety and privacy come first. We have an active, diverse, thoroughly-vetted staff and a massive suite of moderation and privacy tools to keep you safe.</p>
+        </div>
 <footer class="footer-links" aria-label="Support Us">
             <span class="footer-label">SUPPORT OUR SERVER</span>
             <div class="footer-patreon-wrapper">
@@ -466,7 +491,7 @@
     </div>
 
     <script>
-        // Age confirmation logic: minimal, non-annoying, remembers choice in localStorage
+        // Age confirmation logic, remembers choice in localStorage
         (function(){
             const KEY = 'peehouse_age_confirmed_v1';
             const modal = document.getElementById('age-modal');
