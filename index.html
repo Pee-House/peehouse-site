@@ -21,8 +21,8 @@
             --card-border: #d6c57d;
             --label: #8f8a25;
             --muted: #444;
-            --footer-text: #b4b1839c;
-            --footer-heading: #d7d2a7a0;
+            --footer-text: #b9b038;
+            --footer-heading: #c2bb7c;
             --button-bg: #c9c97e;
             --button-text: #3e3e26;
             --modal-bg: #fffef5;
@@ -256,12 +256,84 @@
             color: var(--footer-heading);
         }
 
+        .footer-links .footer-label:first-of-type {
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--label);
+        }
+
         .footer-patreon-wrapper {
             margin-bottom: 14px;
             display: flex;
             justify-content: center;
             gap: 10px; /* Adds space between the buttons */
             flex-wrap: wrap; /* Keeps it clean on mobile screens */
+        }
+
+                /* --- KO-FI WIDGET THEME OVERRIDES --- */
+
+        /* Style Ko-fi button to match footer buttons exactly */
+        .kofi-button {
+            display: inline-block !important;
+            padding: 6px 16px !important;
+            border: 1px solid var(--card-border) !important;
+            border-radius: 4px !important;
+            background-color: rgba(198, 198, 101, 0.843) !important;
+            box-shadow: none !important;
+            transition: background 0.2s ease, color 0.2s ease !important;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+        }
+
+        /* Ko-fi text and all nested elements */
+        .kofi-button * {
+            color: var(--page-text) !important;
+            font-weight: bold !important;
+        }
+
+        span.kofitext {
+            color: var(--page-text) !important;
+            font-weight: bold !important;
+        }
+
+        /* Ko-fi hover effect */
+        .kofi-button:hover {
+            background: #FF6B35 !important;
+            color: #ffffff !important;
+            border-color: #FF6B35 !important;
+        }
+
+        .kofi-button:hover * {
+            color: #ffffff !important;
+        }
+
+        /* STRICT OVERRIDE FOR PREFERS-COLOR-SCHEME: DARK */
+        @media (prefers-color-scheme: dark) {
+            .kofi-button {
+                border: 1px solid var(--card-border) !important;
+                background-color: rgba(221, 214, 24, 0.3) !important;
+                color: var(--page-text) !important;
+            }
+            
+            .kofi-button * {
+                color: var(--page-text) !important;
+                font-weight: bold !important;
+            }
+            
+            span.kofitext {
+                color: var(--page-text) !important;
+                font-weight: bold !important;
+            }
+            
+            .kofi-button:hover {
+                background: #FF6B35 !important;
+                color: #ffffff !important;
+                border-color: #FF6B35 !important;
+            }
+            
+            .kofi-button:hover * {
+                color: #ffffff !important;
+            }
         }
         
         /* Shared button styles */
@@ -274,7 +346,8 @@
             padding: 6px 16px;
             border: 1px solid var(--card-border);
             border-radius: 4px;
-            color: var(--page-text) !important;
+            background-color: rgba(198, 198, 101, 0.843);
+            color: rgba(255, 255, 255, 0.843) !important;
             transition: background 0.2s ease, color 0.2s ease;
         }
 
@@ -290,6 +363,12 @@
             background: #5865F2; /* Discord Blurple */
             color: #ffffff !important;
             text-decoration: none !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .footer-btn {
+                background-color: rgba(221, 214, 24, 0.3);
+            }
         }
 
         /* Age modal styles */
@@ -359,17 +438,19 @@
         
         <div id="website-join" class="center-join"></div>
         
-<footer class="footer-links" aria-label="Find us on external Discord directories">
+<footer class="footer-links" aria-label="Support Us">
+            <span class="footer-label">SUPPORT THE PEE HOUSE</span>
             <div class="footer-patreon-wrapper">
                 <a href="https://patreon.pee.house" target="_blank" rel="noopener" class="footer-btn patreon">
-                    SUPPORT ON PATREON
+                    JOIN MY PATREON
                 </a>
                 <a href="https://pee.house/gift-discord-nitro.html" target="_blank" rel="noopener" class="footer-btn nitro">
                     GIFT NITRO (2 BOOSTS)
                 </a>
             </div>
-
-            <span class="footer-label">Find us on:</span>
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+            <script type='text/javascript'>kofiwidget2.init('BUY ME A DRINK', '#f5df73', 'P5W520V9S5');kofiwidget2.draw();</script>     
+            <span class="footer-label"><br>Directory Listings</span>
             <a href="https://disboard.org/server/1178054988266737784" target="_blank" rel="noopener">disboard</a>|
             <a href="https://discordify.net/server/pee/" target="_blank" rel="noopener">discordify</a>|
             <a href="https://discodus.com/server/1178054988266737784" target="_blank" rel="noopener">discodus</a>|
@@ -379,7 +460,7 @@
             <a href="https://discordservers.io/server/91526-pee-house" target="_blank" rel="noopener">discordservers.io</a>|
             <a href="https://communityone.io/servers/1178054988266737784/pee-house/" target="_blank" rel="noopener">communityone</a>
 
-            <div style="margin-top: 16px; font-size: 0.76rem; opacity: 0.67;">
+            <div style="margin-top: 16px; font-size: 0.76rem; opacity: 0.76;">
                 &copy;2026 Kitty Amo
             </div>
         </footer>
