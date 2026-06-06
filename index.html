@@ -417,8 +417,6 @@
         Our community is highly active and rapidly growing, with members from all over the world.<br>
         Puddles are guaranteed... come make a splash!</p>
 
-
-</div>
         <div class="main-layout">
             <div class="stats-card-wrapper">
                 <div id="server-stats">
@@ -543,86 +541,56 @@
         const API_BASE_URL = 'https://raw.githubusercontent.com/Pee-House/peehouse-site/main/stats.json';
         const TARGET_GUILD_ID = '1178054988266737784';
 
-        function setDiscordWidgetTheme() {
-            const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
-            const theme = darkMq.matches ? 'dark' : 'light';
-            const iframe = document.getElementById('discord-widget');
-            if (iframe) {
-                const src = `https://discord.com/widget?id=${WIDGET_ID}&theme=${theme}`;
-                if (iframe.src !== src) iframe.src = src;
+    async function loadServerStats() {
+        const loading = document.getElementById('stats-loading');
+        const container = document.getElementById('stats-container');
+        try {
+            const response = await fetch(API_BASE_URL, { cache: "no-store" });
+            if (!response.ok) throw new Error("HTTP " + response.status);
+            const data = await response.json();
+            loading.style.display = 'none';
+            const g = data[TARGET_GUILD_ID];
+            if (!g) {
+                loading.style.display = 'block';
+                loading.textContent = 'Stats not found for this server.';
+                return;
             }
-            const metaTheme = document.querySelector('meta[name="theme-color"]');
-            if (metaTheme) {
-                metaTheme.content = theme === 'light' ? '#f8f2b6' : '#DDD618';
+            const card = document.createElement('div');
+            card.className = 'stats-card';
+            let vcLine = "";
+            if (g.voice_members > 0) {
+                vcLine = `<div class="stat-line"><span class="stat-label">${g.voice_members} in VC now!</div>`;
             }
-            if (window.console && console.debug) console.debug('Theme set to', theme, 'darkMatches=', darkMq.matches);
-        }
-
-        const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
-        setDiscordWidgetTheme();
-        const mqHandler = () => setDiscordWidgetTheme();
-        if (darkMq.addEventListener) {
-            darkMq.addEventListener('change', mqHandler);
-        } else if (darkMq.addListener) {
-            darkMq.addListener(mqHandler);
-        }
-
-        async function loadServerStats() {
-            const loading = document.getElementById('stats-loading');
-            const container = document.getElementById('stats-container');
-
-            try {
-                const response = await fetch(API_BASE_URL, { cache: "no-store" });
-                if (!response.ok) throw new Error("HTTP " + response.status);
-
-                const data = await response.json();
-
-                loading.style.display = 'none';
-
-                const g = data[TARGET_GUILD_ID];
-                if (!g) {
-                    loading.style.display = 'block';
-                    loading.textContent = 'Stats not found for this server.';
-                    return;
-                }
-
-                const card = document.createElement('div');
-                card.className = 'stats-card';
-
-                let vcLine = "";
-                if (g.voice_members > 0) {
-                    vcLine = `<div class="stat-line"><span class="stat-label">${g.voice_members} in VC now!</div>`;
-                }
-
-                let inviteLine = "";
-                if (g.invite_url) {
-                    inviteLine = `
-                        <div class="stat-line">
-                            <a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a>
-                        </div>
-                    `;
-                    document.getElementById('website-join').innerHTML = inviteLine;
-                }
-
-                card.innerHTML = `
-                    <div class="stat-line"><span class="stat-label">Total members:</span> ${g.human_members}</div>
-                    <div class="stat-line"><span class="stat-label">Verified:</span> ${g.verified_members}</div>
-                    ${vcLine}
-
-                    <br>
-
-                    <div class="stat-line"><span class="stat-label">Active last 24h:</span> ${g.activity.recent_24h ?? 'temporary error'}</div>
-                    <div class="stat-line"><span class="stat-label">Active last 7d:</span> ${g.activity.recent_7d ?? 'stats unavailable'}</div>
-                    <div class="stat-line"><span class="stat-label">Active last 30d:</span> ${g.activity.recent_30d ?? 'check again later'}</div>
+            let inviteLine = "";
+            if (g.invite_url) {
+                inviteLine = `
+                    <div class="stat-line">
+                        <a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a>
+                    </div>
                 `;
-
-                container.appendChild(card);
-                updateDiscordHeight(card);
-
-            } catch (error) {
-                loading.textContent = 'Unable to load server statistics.\n' + error;
+                document.getElementById('website-join').innerHTML = inviteLine;
             }
+            card.innerHTML = `
+                <div class="stat-line"><span class="stat-label">Total members:</span> ${g.human_members}</div>
+                <div class="stat-line"><span class="stat-label">Verified:</span> ${g.verified_members}</div>
+                ${vcLine}
+                <br>
+                <div class="stat-line"><span class="stat-label">Active last 24h:</span> ${g.activity.recent_24h ?? 'temporary error'}</div>
+                <div class="stat-line"><span class="stat-label">Active last 7d:</span> ${g.activity.recent_7d ?? 'stats unavailable'}</div>
+                <div class="stat-line"><span class="stat-label">Active last 30d:</span> ${g.activity.recent_30d ?? 'check again later'}</div>
+            `;
+            
+            container.appendChild(card);
+            
+            // FIX APPLIED HERE: Waits a micro-moment for the layout to calculate perfectly
+            requestAnimationFrame(() => {
+                updateDiscordHeight(card);
+            });
+            
+        } catch (error) {
+            loading.textContent = 'Unable to load server statistics.\n' + error;
         }
+    }
 
         function updateDiscordHeight(card) {
             const discordIframe = document.getElementById('discord-widget');
