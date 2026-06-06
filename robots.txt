@@ -1,0 +1,11 @@
+# For all search engines
+User-agent: *
+
+# Allow everything by default
+Allow: /
+
+# Prevent engines from crawling both versions of the homepage to avoid duplicate content
+Disallow: /index.html
+
+# Link directly to your sitemap (update the filename if yours is named differently, like sitemap.xml)
+Sitemap: https://pee.house/sitemap.xml
