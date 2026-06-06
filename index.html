@@ -390,19 +390,18 @@
             .stats-card { max-width: 300px; }
             .discord-widget { max-width: 300px; min-width: 300px; }
 
-        /* By default (on mobile), hide the line breaks so text flows naturally in one paragraph */
-        .desktop-br {
+        /* Hide the line breaks by default (on mobile/tablets) */
+        .desktop-only-br {
             display: none;
         }
 
-        /* On desktop screens, force the spans to act like line breaks */
+        /* Force them to display as active line breaks on desktop screens */
         @media (min-width: 900px) {
-            .desktop-br::before {
-                content: "\A";
-                white-space: pre;
-                }
+            .desktop-only-br {
+                display: inline;
             }
         }
+    }
     </style>
 </head>
 
@@ -424,10 +423,9 @@
                 <h1 class="banner-title">Pee House Discord</h1>
             </a>
         </div>
-        <p>This cozy 18+ space is the perfect place to make friends and let it all out!<span class="desktop-br"></span>
-        We have two custom-built Discord bots to track bladder holds and keep everyone safe.<span class="desktop-br"></span>
-        <br>
-        Our community is highly active and rapidly growing, with members from all over the world.<span class="desktop-br"></span>
+        <p>This cozy 18+ space is the perfect place to make friends and let it all out!<br class="desktop-only-br">
+        We have two custom-built Discord bots to track bladder holds and keep everyone safe.<br class="desktop-only-br">
+        Our community is highly active and rapidly growing, with members from all over the world.<br class="desktop-only-br">
         Puddles are guaranteed... come make a splash!</p>
 
         <div class="main-layout">
