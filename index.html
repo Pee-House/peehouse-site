@@ -397,10 +397,18 @@
             display: none;
         }
 
+        /* Mobile-only blank-line spacer */
+        .mobile-only-br {
+            display: inline;
+        }
+
         /* Force them to display as active line breaks on desktop screens */
         @media (min-width: 900px) {
             .desktop-only-br {
                 display: inline;
+            }
+            .mobile-only-br {
+                display: none;
             }
         }
     
@@ -426,7 +434,7 @@
             </a>
         </div>
         <p>This cozy 18+ space is the perfect place to make friends and let it all out!<br class="desktop-only-br">
-        We have two custom-built Discord bots to track bladder holds and keep everyone safe.<br class="desktop-only-br">
+        We have two custom-built Discord bots to track bladder holds and keep everyone safe.<br><br class="mobile-only-br">
         Our community is highly active and rapidly growing, with members from all over the world.<br class="desktop-only-br">
         Puddles are guaranteed... come make a splash!</p>
 
