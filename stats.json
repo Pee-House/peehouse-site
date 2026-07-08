@@ -4,16 +4,16 @@
     "guild_name": "Pee House",
     "total_members": 858,
     "human_members": 844,
-    "online_members": 91,
-    "verified_members": 244,
-    "unverified_members": 600,
+    "online_members": 78,
+    "verified_members": 245,
+    "unverified_members": 599,
     "bot_members": 14,
-    "voice_members": 2,
+    "voice_members": 1,
     "presence": {
-      "online": 45,
-      "idle": 25,
-      "dnd": 21,
-      "offline": 753
+      "online": 40,
+      "idle": 21,
+      "dnd": 17,
+      "offline": 766
     },
     "activity": {
       "recent_24h": 42,
@@ -21,7 +21,7 @@
       "recent_30d": 112,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-08T22:32:53.729676+00:00",
+    "last_updated": "2026-07-08T22:52:53.713401+00:00",
     "invite_url": "https://discord.gg/nTnHqkFf85"
   },
   "1178207186942435348": {
@@ -29,16 +29,16 @@
     "guild_name": "Moderation Station",
     "total_members": 14,
     "human_members": 13,
-    "online_members": 9,
+    "online_members": 8,
     "verified_members": 0,
     "unverified_members": 13,
     "bot_members": 1,
     "voice_members": 0,
     "presence": {
-      "online": 5,
-      "idle": 1,
-      "dnd": 3,
-      "offline": 4
+      "online": 3,
+      "idle": 3,
+      "dnd": 2,
+      "offline": 5
     },
     "activity": {
       "recent_24h": 7,
@@ -46,6 +46,6 @@
       "recent_30d": 11,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-08T22:32:53.730661+00:00"
+    "last_updated": "2026-07-08T22:52:53.714908+00:00"
   }
 }
