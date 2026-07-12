@@ -10,18 +10,18 @@
     "bot_members": 14,
     "voice_members": 2,
     "presence": {
-      "online": 31,
-      "idle": 30,
+      "online": 32,
+      "idle": 29,
       "dnd": 19,
       "offline": 791
     },
     "activity": {
-      "recent_24h": 40,
-      "recent_7d": 73,
-      "recent_30d": 111,
-      "source": "exp.last_activity"
+      "recent_24h": null,
+      "recent_7d": null,
+      "recent_30d": null,
+      "source": "unavailable"
     },
-    "last_updated": "2026-07-12T04:25:55.932312+00:00",
+    "last_updated": "2026-07-12T04:31:07.407162+00:00",
     "invite_url": "https://discord.gg/sw7KGrzGPB"
   },
   "1178207186942435348": {
@@ -29,23 +29,23 @@
     "guild_name": "Moderation Station",
     "total_members": 14,
     "human_members": 13,
-    "online_members": 7,
+    "online_members": 5,
     "verified_members": 0,
     "unverified_members": 13,
     "bot_members": 1,
     "voice_members": 0,
     "presence": {
       "online": 0,
-      "idle": 5,
+      "idle": 3,
       "dnd": 2,
-      "offline": 6
+      "offline": 8
     },
     "activity": {
-      "recent_24h": 7,
-      "recent_7d": 8,
-      "recent_30d": 10,
-      "source": "exp.last_activity"
+      "recent_24h": null,
+      "recent_7d": null,
+      "recent_30d": null,
+      "source": "unavailable"
     },
-    "last_updated": "2026-07-12T04:25:55.934313+00:00"
+    "last_updated": "2026-07-12T04:31:07.407162+00:00"
   }
 }
