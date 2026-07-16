@@ -4,16 +4,16 @@
     "guild_name": "Pee House",
     "total_members": 914,
     "human_members": 900,
-    "online_members": 88,
+    "online_members": 86,
     "verified_members": 260,
     "unverified_members": 640,
     "bot_members": 14,
     "voice_members": 2,
     "presence": {
-      "online": 40,
-      "idle": 33,
-      "dnd": 15,
-      "offline": 812
+      "online": 38,
+      "idle": 32,
+      "dnd": 16,
+      "offline": 814
     },
     "activity": {
       "recent_24h": 36,
@@ -21,7 +21,7 @@
       "recent_30d": 113,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-16T00:48:39.924985+00:00",
+    "last_updated": "2026-07-16T01:08:39.925939+00:00",
     "invite_url": "https://discord.gg/f2uNztJeaK"
   },
   "1178207186942435348": {
@@ -35,9 +35,9 @@
     "bot_members": 1,
     "voice_members": 0,
     "presence": {
-      "online": 3,
+      "online": 2,
       "idle": 1,
-      "dnd": 2,
+      "dnd": 3,
       "offline": 8
     },
     "activity": {
@@ -46,6 +46,6 @@
       "recent_30d": 11,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-16T00:48:39.926505+00:00"
+    "last_updated": "2026-07-16T01:08:39.926937+00:00"
   }
 }
