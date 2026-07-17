@@ -11,8 +11,8 @@
     "voice_members": 0,
     "presence": {
       "online": 19,
-      "idle": 31,
-      "dnd": 15,
+      "idle": 30,
+      "dnd": 16,
       "offline": 844
     },
     "activity": {
@@ -21,7 +21,7 @@
       "recent_30d": 112,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-17T11:08:42.512834+00:00",
+    "last_updated": "2026-07-17T11:28:42.519626+00:00",
     "invite_url": "https://discord.gg/JCbcxueVZc"
   },
   "1178207186942435348": {
@@ -29,16 +29,16 @@
     "guild_name": "Moderation Station",
     "total_members": 15,
     "human_members": 14,
-    "online_members": 4,
+    "online_members": 6,
     "verified_members": 0,
     "unverified_members": 14,
     "bot_members": 1,
     "voice_members": 0,
     "presence": {
-      "online": 0,
-      "idle": 2,
+      "online": 1,
+      "idle": 3,
       "dnd": 2,
-      "offline": 10
+      "offline": 8
     },
     "activity": {
       "recent_24h": 7,
@@ -46,6 +46,6 @@
       "recent_30d": 10,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-17T11:08:42.513855+00:00"
+    "last_updated": "2026-07-17T11:28:42.521185+00:00"
   }
 }
