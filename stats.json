@@ -11,8 +11,8 @@
     "voice_members": 2,
     "presence": {
       "online": 52,
-      "idle": 29,
-      "dnd": 24,
+      "idle": 30,
+      "dnd": 23,
       "offline": 817
     },
     "activity": {
@@ -21,7 +21,7 @@
       "recent_30d": 107,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-19T19:49:16.783528+00:00",
+    "last_updated": "2026-07-19T20:09:16.786331+00:00",
     "invite_url": "https://discord.gg/VrkyQjgVQb"
   },
   "1178207186942435348": {
@@ -46,6 +46,6 @@
       "recent_30d": 10,
       "source": "exp.last_activity"
     },
-    "last_updated": "2026-07-19T19:49:16.784451+00:00"
+    "last_updated": "2026-07-19T20:09:16.787438+00:00"
   }
 }
