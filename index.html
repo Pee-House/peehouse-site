@@ -613,13 +613,12 @@
             if (g.invite_url) {
                 inviteLine = `
                     <div class="stat-line">
-                        <a class="join-button" href="https://discord.gg/peee" target="_blank" rel="noopener">CHAT NOW</a>
-            
+                        <a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a>
                     </div>
                 `;
                 document.getElementById('website-join').innerHTML = inviteLine;
             }
-        // old: <a class="join-button" href="${g.invite_url}" target="_blank" rel="noopener">CHAT NOW</a>
+
             card.innerHTML = `
                 <div class="stat-line"><span class="stat-label">Total members:</span> ${g.human_members}</div>
                 <div class="stat-line"><span class="stat-label">Verified:</span> ${g.verified_members}</div>
